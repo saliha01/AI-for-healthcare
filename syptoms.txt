@@ -1,0 +1,111 @@
+class SymptomChecker:
+    def __init__(self):
+        self.selected_symptoms = []
+
+    def select_symptoms(self):
+        print("Welcome to the Symptom Checker!")
+        print("Select symptoms from the list (type 'done' when finished):")
+
+        symptoms_list = [
+            "Fever",
+            "Persistent Cough",
+            "Shortness of Breath",
+            "Chest Pain or Pressure",
+            "Severe Headache",
+            "Dizziness or Fainting",
+            "Unexplained Weight Loss",
+            "Fatigue",
+            "Abdominal Pain or Discomfort",
+            "Nausea or Vomiting",
+            "Diarrhea",
+            "Persistent or Severe Headaches",
+            "Vision Changes",
+            "Joint Pain or Swelling",
+            "Skin Rashes or Changes",
+            "Persistent or Severe Back Pain",
+            "Difficulty Swallowing",
+            "Persistent Sore Throat",
+            "Persistent Hoarseness",
+            "Frequent Urination or Changes in Urinary Habits",
+            "Blood in Urine or Stool",
+            "Changes in Bowel Habits",
+            "Difficulty Sleeping",
+            "Persistent Congestion or Sinus Pain",
+            "Changes in Menstrual Cycle",
+            "Persistent or Severe Stress or Anxiety",
+            "Memory Loss or Confusion",
+            "Numbness or Weakness in Limbs",
+            "Persistent High Blood Pressure",
+            "Wounds or Injuries that Won't Heal",
+        ]
+
+        while True:
+            print("\nSymptoms:")
+            for i, symptom in enumerate(symptoms_list, start=1):
+                print(f"{i}. {symptom}")
+
+            user_input = input("Enter the number of the symptom or 'done': ")
+
+            if user_input.lower() == 'done':
+                break
+
+            try:
+                index = int(user_input)
+                if 1 <= index <= len(symptoms_list):
+                    selected_symptom = symptoms_list[index - 1]
+                    if selected_symptom not in self.selected_symptoms:
+                        self.selected_symptoms.append(selected_symptom)
+                        print(f"Selected: {selected_symptom}")
+                    else:
+                        print("Symptom already selected. Choose a different one.")
+                else:
+                    print("Invalid input. Please enter a valid number.")
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
+
+    def get_treatment_recommendation(self):
+        print("\nBased on your selected symptoms, here are general treatment recommendations:")
+        for symptom in self.selected_symptoms:
+            print(f"- Medication for {symptom}: {self.get_medication(symptom)}")
+
+    def get_medication(self, symptom):
+        medications = {
+            "Fever": "Acetaminophen or Ibuprofen",
+            "Persistent Cough": "Dextromethorphan",
+            "Shortness of Breath": "Albuterol (if prescribed)",
+            "Chest Pain or Pressure": "Nitroglycerin (if prescribed)",
+            "Severe Headache": "Acetaminophen or Ibuprofen",
+            "Dizziness or Fainting": "Evaluation by a healthcare professional",
+            "Unexplained Weight Loss": "Evaluation by a healthcare professional",
+            "Unexplained Weight Loss": "Evaluation by a healthcare professional",
+            "Fatigue": "Rest and hydration",
+            "Abdominal Pain or Discomfort": "Antacids",
+            "Nausea or Vomiting": "Over-the-counter antiemetics (e.g., dimenhydrinate)",
+            "Diarrhea": "Oral rehydration solutions, Loperamide (Imodium)",
+            "Persistent or Severe Headaches": "Acetaminophen or Ibuprofen",
+            "Vision Changes": "Evaluation by an eye care professional",
+            "Joint Pain or Swelling": "Nonsteroidal anti-inflammatory drugs (NSAIDs) like ibuprofen",
+            "Skin Rashes or Changes": "Topical hydrocortisone cream, Antihistamines",
+            "Persistent or Severe Back Pain": "Acetaminophen or Ibuprofen",
+            "Difficulty Swallowing": "Evaluation by a healthcare professional",
+            "Persistent Sore Throat": "Throat lozenges, Warm saltwater gargle",
+            "Persistent Hoarseness": "Evaluation by a healthcare professional",
+            "Frequent Urination or Changes in Urinary Habits": "Evaluation by a healthcare professional",
+            "Blood in Urine or Stool": "Urgent medical attention is required",
+            "Changes in Bowel Habits": "Fiber supplements",
+            "Difficulty Sleeping": "Over-the-counter sleep aids (short-term use), Good sleep hygiene practices",
+            "Persistent Congestion or Sinus Pain": "Decongestants (short-term use, with caution), Nasal saline sprays",
+            "Changes in Menstrual Cycle": "Evaluation by a healthcare professional",
+            "Persistent or Severe Stress or Anxiety": "Consultation with a mental health professional",
+            "Memory Loss or Confusion": "Evaluation by a healthcare professional",
+            "Numbness or Weakness in Limbs": "Urgent medical attention is required",
+            "Persistent High Blood Pressure": "Antihypertensive medications (if prescribed)",
+            "Wounds or Injuries that Won't Heal": "Topical antibiotics, Consultation with a healthcare professional for persistent wounds",
+        }
+
+        return medications.get(symptom, "Consult a healthcare professional for advice")
+
+if __name__ == "__main__":
+    symptom_checker = SymptomChecker()
+    symptom_checker.select_symptoms()
+    symptom_checker.get_treatment_recommendation()
